@@ -26,8 +26,8 @@ type Entry struct {
 
 type Transfer struct {
 	ID            int64
-	FromAccountID sql.NullInt64
-	ToAccountID   sql.NullInt64
-	Amount        sql.NullInt64
+	FromAccountID int64
+	ToAccountID   int64
+	Amount        int64
 	CreatedAt     sql.NullTime
 }
