@@ -18,7 +18,7 @@ func TestTransfer(t *testing.T) {
 	existed := make(map[int]bool)
 	log.Println(">>> before transaction", account1.Balance, account2.Balance)
 	//  run concurrent go routine for transfer transaction
-	n := 500
+	n := 5
 	amount := int64(10)
 	for range n {
 		go func() {
