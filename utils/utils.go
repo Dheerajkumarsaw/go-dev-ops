@@ -52,3 +52,19 @@ func RandomCurrency() string {
 func RandomEmail() string {
 	return fmt.Sprintf("%s@email.com", RandomString(6))
 }
+
+// Constants for all supported currencies
+const (
+	USD = "USD"
+	EUR = "EUR"
+	CAD = "CAD"
+)
+
+// IsSupportedCurrency returns true if the currency is supported
+func IsSupportedCurrency(currency string) bool {
+	switch currency {
+	case USD, EUR, CAD:
+		return true
+	}
+	return false
+}
