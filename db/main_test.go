@@ -6,6 +6,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/Dheerajkumarsaw/go-dev-ops/utils"
 	_ "github.com/lib/pq"
 )
 
@@ -18,8 +19,11 @@ var queries *Queries
 var testDB *sql.DB
 
 func TestMain(m *testing.M) {
-	var err error
-	testDB, err = sql.Open(dbDriver, dbSource)
+	config, err := utils.LoadConfig(".")
+	if err != nil {
+		log.Fatal("Cannot load config:", err)
+	}
+	testDB, err = sql.Open(config.DBDriver, config.DbSource)
 	if err != nil {
 		log.Fatal("DB connection can not be done", err)
 	}
