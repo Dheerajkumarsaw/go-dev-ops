@@ -82,6 +82,25 @@ func (q *Queries) CreateTransfer(ctx context.Context, arg CreateTransferParams) 
 	return i, err
 }
 
+const createUser = `-- name: CreateUser :one
+INSERT INTO users (username, email, password_hash)
+VALUES ($1, $2, $3)
+RETURNING id
+`
+
+type CreateUserParams struct {
+	Username     string
+	Email        string
+	PasswordHash string
+}
+
+func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (int64, error) {
+	row := q.db.QueryRowContext(ctx, createUser, arg.Username, arg.Email, arg.PasswordHash)
+	var id int64
+	err := row.Scan(&id)
+	return id, err
+}
+
 const deleteAccount = `-- name: DeleteAccount :one
 DELETE FROM accounts
 WHERE id = $1

@@ -45,3 +45,8 @@ WHERE id = $1;
 SELECT * FROM accounts
 WHERE id = $1 LIMIT 1
 FOR NO KEY UPDATE;
+
+-- name: CreateUser :one
+INSERT INTO users (username, email, password_hash)
+VALUES ($1, $2, $3)
+RETURNING id;
