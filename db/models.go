@@ -31,3 +31,13 @@ type Transfer struct {
 	Amount        int64
 	CreatedAt     sql.NullTime
 }
+
+type User struct {
+	ID                int64
+	Username          string
+	Email             string
+	PasswordHash      string
+	CreatedAt         sql.NullTime
+	UpdatedAt         sql.NullTime
+	PasswordUpdatedAt sql.NullTime
+}
